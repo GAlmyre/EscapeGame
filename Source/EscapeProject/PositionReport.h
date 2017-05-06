@@ -3,17 +3,17 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
-#include "OpenDoor.generated.h"
+#include "PositionReport.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class ESCAPEPROJECT_API UOpenDoor : public UActorComponent
+class ESCAPEPROJECT_API UPositionReport : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UOpenDoor();
+	UPositionReport();
 
 protected:
 	// Called when the game starts
@@ -23,14 +23,6 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-private:
-	UPROPERTY(VisibleAnywhere)
-	float OpenAngle = 90.f;
-
-	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate;
+		
 	
-	AActor* ActorThatOpens;
-
-	void OpenDoor();
 };
