@@ -35,25 +35,15 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	/// if the actorThatOpens is in the volume
 	if (GetTotalMassOfActorsOnPlate() > TriggerMass)
 	{
-		OpenDoor();
-		LastDoorOpenTime = GetWorld()->TimeSeconds;
+		UE_LOG(LogTemp, Warning, TEXT("Door opening"));
+		OnOpen.Broadcast();
 	}	
 
 	/// check if it's time to close the door
-	if (GetWorld()->TimeSeconds >= LastDoorOpenTime+DoorCloseDelay)
+	else
 	{
-		CloseDoor();
+		OnClose.Broadcast();
 	}
-}
-
-void UOpenDoor::OpenDoor()
-{
-	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
-}
-
-void UOpenDoor::CloseDoor()
-{
-	Owner->SetActorRotation(FRotator(0.0f, 0, 0.0f));
 }
 
 float UOpenDoor::GetTotalMassOfActorsOnPlate()
